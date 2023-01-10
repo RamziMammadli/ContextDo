@@ -6,20 +6,19 @@ export const todoContext = createContext(null);
 export const TodoProvider = ({children}) => {
   
   const [titles, settitles] = useState([]);
-
-
+  
   
   const values = {
     titles,
     settitles,
   };
   
-  // useEffect(() => {
-    //   todoStorage.get()
-    //   .then(data => {
-      //     settitle(data);
-      //   });
-      // }, []);
+  useEffect(() => {
+      todoStorage.get()
+      .then(data => {
+          settitles(data);
+        });
+      }, []);
       
   return <todoContext.Provider value={values}>{children}</todoContext.Provider>;
 };

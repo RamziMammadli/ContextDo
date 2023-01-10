@@ -1,31 +1,31 @@
-import {FlatList, Text, TextInput, TouchableOpacity, View} from 'react-native';
-import React, {useContext, useState} from 'react';
+import {
+  FlatList,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import React, {startTransition, useContext, useState} from 'react';
 import Style from '../Style';
 import {todoContext} from '../Context/TodoStorage';
 import Helper from '../helper/Helper';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 const ToDo = () => {
-  const {titles,settitles} = useContext(todoContext);
-
+  const {titles, settitles} = useContext(todoContext);
 
   const [title, settitle] = useState([]);
-
 
   const getRandomId = () => {
     return Math.floor(Math.random() * 100);
   };
+
   const add = () => {
-    settitles([...titles,title]);
+    settitles([...titles, title]);
     Helper.set([]);
     getRandomId();
-  };
-
-
-  console.log(titles);
-  const Box = ({item}) => {
-    <View>
-      <Text>{item}</Text>
-    </View>;
   };
 
   return (
@@ -45,8 +45,22 @@ const ToDo = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <View>
-        <FlatList />
+      <View style={Style.titleViewBox}>
+        <ScrollView>
+          <View style={Style.titleView}>
+            {titles.map((item, index) => {
+              return (
+                <View
+                  key={index}
+                  onPress={() => star()}
+                  style={Style.touchBox}>
+                  <Text style={Style.titleText}>{item}</Text>
+                  <TouchableOpacity><FontAwesomeIcon icon={faStar} size={22} color={'orange'}/></TouchableOpacity>
+                </View>
+              );
+            })}
+          </View>
+        </ScrollView>
       </View>
     </View>
   );

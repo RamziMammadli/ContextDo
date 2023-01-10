@@ -40,5 +40,30 @@ export default StyleSheet.create({
   },
   buttonBox: {
     paddingTop:15,
+  },
+  titleView: {
+    paddingHorizontal:25,
+  },
+  titleViewBox: {
+    paddingHorizontal:5,
+    paddingVertical:5,
+  },
+  titleText:{
+    fontSize:25,
+    fontWeight:'500',
+    paddingLeft:10,
+    color:'#5c31ea'
+  },
+  touchBox:{
+    borderWidth:1,
+    padding:5,
+    borderRadius:20,
+    borderColor:'eaeaea',
+    marginVertical:10,
+    paddingVertical:15,
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'space-between',
+    paddingHorizontal:20
   }
 });
